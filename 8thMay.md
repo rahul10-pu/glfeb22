@@ -117,6 +117,6 @@ insert into pricing values(5.0, 'November', 2021, 350);
 insert into pricing values(14.2, 'December', 2021, 974);
 insert into pricing values(19.0, 'December', 2021, 1320);
 insert into pricing values(5.0, 'December', 2021, 362);
-insert into pricing values(14.2,January, 2022, 999);
+insert into pricing values(14.2,'January', 2022, 999);
 insert into pricing values(19.0, 'January', 2022, 1309);
 insert into pricing values(5.0, 'January', 2022, 359);
