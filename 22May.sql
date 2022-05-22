@@ -123,3 +123,10 @@ INSERT INTO RATING VALUES(13,113,2);
 INSERT INTO RATING VALUES(14,114,1); 
 INSERT INTO RATING VALUES(15,115,1); 
 INSERT INTO RATING VALUES(16,116,0);
+
+
+select count(t1.cus_gender) as NoOfCustomers, t1.cus_gender from 
+(select `order`.*, customer.cus_gender, customer.cus_name 
+from `order` inner join customer 
+where `order`.cus_id=customer.cus_id 
+having `order`.ord_amount>=3000) as t1 group by t1.cus_gender;
