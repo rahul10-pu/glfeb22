@@ -130,3 +130,22 @@ select count(t1.cus_gender) as NoOfCustomers, t1.cus_gender from
 from `order` inner join customer 
 where `order`.cus_id=customer.cus_id 
 having `order`.ord_amount>=3000) as t1 group by t1.cus_gender;
+
+select product.pro_name, `order`.* from `order`, supplier_pricing, product
+where `order`.cus_id=1 and `order`.PRICING_ID=supplier_pricing.PRICING_ID and 
+supplier_pricing.PRO_ID=product.PRO_id;
+
+select supplier.* from supplier where supplier.supp_id in (
+select supp_id from supplier_pricing group by supp_id having count(supp_id)>3) group by supplier.supp_id;
+
+select category.cat_id, category.cat_name, min(t2.min_price) as Min_Price 
+from category inner join
+(select product.cat_id, product.pro_name, t1.* from product inner join
+(select pro_id, min(supp_price) as Min_Price from supplier_pricing group by pro_id) as t1 
+where t1.PRO_id=product.pro_id) as t2 
+where t2.cat_id=category.cat_id group by category.cat_id;
+
+select product.pro_id, product.pro_name from `order` inner join supplier_pricing on 
+supplier_pricing.PRICING_ID=`order`.PRICING_ID inner join product 
+on product.pro_id=supplier_pricing.pro_id where 
+`order`.ORD_DATE>"2021-10-05";
